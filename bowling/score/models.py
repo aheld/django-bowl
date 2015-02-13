@@ -10,6 +10,34 @@ class Game():
         self.rolls.append(pins)
 
     def score(self):
+        def isSpare(rolls):
+            return rolls[0] + rolls[1] == 10
+
+        def isStrike(rolls):
+            return rolls[0] == 10
+
+        def do_score(rolls, score, frame):
+            if frame > 10:
+                return score
+
+            if isStrike(rolls):
+                if len(rolls) < 3: return score
+                score += rolls[0] 
+                score += rolls[1] + rolls[2]
+                return do_score(rolls[1:], score, frame+1)
+
+            elif isSpare(rolls):
+                score += rolls[0] + rolls[1]
+                score += rolls[2]
+                return do_score(rolls[2:], score, frame+1)
+
+            else:
+                score += rolls[0] + rolls[1]
+                return do_score(rolls[2:], score, frame+1)
+
+        return do_score(self.rolls, 0, 1)
+
+    def score_old(self):
         idx = 0
         frame_count=0
         score_sum=0
