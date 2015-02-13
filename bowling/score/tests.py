@@ -59,10 +59,10 @@ class BowlingTest(TestCase):
         self.assertEqual(self.game.score(),47)
 
     def test_mikey_test(self):
-				self.roll_many(10,rolls=12)
-				self.assertEqual(self.game.score(),300)
+        self.roll_many(10,rolls=12)
+        self.assertEqual(self.game.score(),300)
 
     def test_from_wiki(self):
-				for x in [3,4,6,4,7,1,4,5,10,4,6,10,10,10,5,5,3]:
-						self.game.roll(x) 
-				self.assertEqual(self.game.score(),169)
+        for x in [3,4,6,4,7,1,4,5,10,4,6,10,10,10,5,5,3]:
+            self.game.roll(x) 
+        self.assertEqual(self.game.score(),169)
